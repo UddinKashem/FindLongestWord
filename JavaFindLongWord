@@ -1,0 +1,71 @@
+package javastring;
+
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
+/*
+ * README 
+ * Create a class with a method to return the length and longest words in a sentence. For example, “The cow jumped over the moon.”
+ * Used logger to write the output of the result.
+ * Make the class simple for easy execution.
+ * 
+ * Keep the input string as an example. We can change various source of input to find the longest word.
+ */
+
+public class LongString {
+
+	public static void main(String[] args) {
+		//Create object for logger
+	    Logger logger = Logger.getLogger("MyLog");  
+	    FileHandler fh;  
+	    
+	    //Declare String to find longest word on that
+		String str="Find the longest word from this string.";
+		
+		//System.out.println("Longest word: '"+findLongWord(str)+"' and the leangth of the word: "+findLongWord(str).length());
+
+
+	    try {  
+
+	        // This block configure the logger with handler and formatter  
+	        fh = new FileHandler("C:/temp/test/MyLogFile.log");  
+	        logger.addHandler(fh);
+	        SimpleFormatter formatter = new SimpleFormatter();  
+	        fh.setFormatter(formatter);  
+
+	        // the following statement is used to log any messages  
+	        logger.info("My first log");  
+	        logger.info("Longest word: '"+findLongWord(str)+"' and the leangth of the word: "+findLongWord(str).length());
+
+	    } catch (SecurityException e) {  
+	        e.printStackTrace();  
+	    } catch (IOException e) {  
+	        e.printStackTrace();  
+	    }  
+	}
+	
+	//Method for find long word
+    public static String findLongWord(String input){
+    	
+		  String hgStr;
+		  String[] tmpStr;
+		  int i;
+		  int alen;
+	   
+		  tmpStr=input.split(" ");
+		  hgStr=tmpStr[0];
+		  alen=tmpStr.length;
+		  
+		  for(i=0;i<alen-1;i++){
+			  
+			  if(hgStr.length()<tmpStr[i+1].length()){
+				  hgStr=tmpStr[i+1];
+	          }
+	        }
+	    
+	    return hgStr;
+	  }
+
+}
